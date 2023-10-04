@@ -1,8 +1,9 @@
 import React from 'react';
 import {Navigate, Outlet } from 'react-router-dom';
+import PropTypes from "prop-types";
 import { useAuth } from '../contexts/AuthContext';
 
-const PrivateRoute = () => {
+const PrivateRoute = ({ children }) => {
 	const { user } = useAuth();
 
 	return(
@@ -15,5 +16,9 @@ const PrivateRoute = () => {
     </>
 	);
 };
+
+PrivateRoute.propTypes = {
+	children: PropTypes.node.isRequired,
+}
 
 export default PrivateRoute;

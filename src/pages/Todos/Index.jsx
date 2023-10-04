@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoList from "../../components/Todos/TodoList/Index";
+import './style.sass';
 
 const TodosPage = () => {
 	const todos = [
