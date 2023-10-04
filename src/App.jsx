@@ -1,4 +1,7 @@
 import React from 'react';
+import Header from "./components/Layouts/Header/Index";
+import Footer from "./components/Layouts/Footer/Index";
+
 import TodoList from './components/Todos/TodoList/Index';
 
 function App() {
@@ -8,8 +11,10 @@ function App() {
   ]
 
   return (
-    <div>
+    <div className="App">
+      <Header />
       <TodoList todos={todos} />
+      <Footer />
     </div>
   );
 }

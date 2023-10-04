@@ -8,7 +8,8 @@ const TodoInput = (props) => {
 
   return(
 			<form onSubmit={onSubmit}>
-        <input type="text" name={name} value={name} onChange={onChange} />
+        <input type="text" name={name} value={name} onChange={onChange}
+        placeholder='Task name...'/>
         <button> Add Todo</button>
       </form>
 	)
