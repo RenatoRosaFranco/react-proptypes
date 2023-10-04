@@ -1,20 +1,28 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+
 import Header from "./components/Layouts/Header/Index";
 import Footer from "./components/Layouts/Footer/Index";
 
-import TodoList from './components/Todos/TodoList/Index';
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+
+// Toastify
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import RoutesApp from "./routes/Index";
 
 function App() {
-  const todos = [
-    {id: 1, text: 'Task 1', completed: false},
-    {id: 2, text: 'Task 2', completed: true}
-  ]
-
   return (
     <div className="App">
-      <Header />
-        <TodoList todos={todos} />
-      <Footer />
+      <BrowserRouter>
+        <AuthProvider>
+          <Header />
+            <RoutesApp />
+          <Footer />
+
+          <ToastContainer autoClose={3000}/>
+        </AuthProvider>
+      </BrowserRouter>
     </div>
   );
 }

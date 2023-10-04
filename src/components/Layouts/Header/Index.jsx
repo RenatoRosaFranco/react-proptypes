@@ -1,9 +1,16 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const Header = () => {
 	return(
-			<header>
+			<header id='header'>
 				<h5>Header</h5>
+
+				<nav>
+					<Link to='/'>Home</Link> /
+					<Link to='/todos'>Todos</Link> /
+					<Link to='/login'>Login</Link>
+				</nav>
 			</header>
 	)
 }
