@@ -10,6 +10,7 @@ const TodoList = ({ todos }) => {
   const [todoList, setTodoList] = useState(todos);
   const [text, setText] = useState('');
   const nextId = useRef(todos.length + 1);
+  const [showCompleted, setShowCompleted] = useState(true);
 
   const addTodo = (e) => {
     e.preventDefault();
@@ -41,6 +42,10 @@ const TodoList = ({ todos }) => {
     )
   };
 
+  const filteredTodoList = showCompleted ?
+      todoList.filter((todo) => todo.completed)
+      : todoList.filter((todo) => !todo.completed);
+
   return(
     <div>
       <h2>Todo List</h2>
@@ -50,9 +55,16 @@ const TodoList = ({ todos }) => {
           name={text}
           onChange={(event) => setText(event.target.value)}
       />
-      <hr/>
 
-      {todoList.map((todo) => {
+      <br/>
+
+      <div>
+        <button onClick={ () => setShowCompleted(true) }>Show Completed</button>
+        <button onClick={ () => setShowCompleted(false) }>Show Uncompleted</button>
+      </div>
+
+      <br />
+      {filteredTodoList.map((todo) => {
         return (
             <TodoItem
                 key={todo.id}
