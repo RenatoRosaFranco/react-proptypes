@@ -1,24 +1,24 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+	import React from 'react';
+	import { Routes, Route } from 'react-router-dom';
 
-import HomePage from '../pages/Home/Index';
-import TodosPage from '../pages/Todos/Index';
-import LoginPage from "../pages/Login/Index";
-import UsersPage from "../pages/Users/Index";
+	import HomePage from '../pages/Home/Index';
+	import TodosPage from '../pages/Todos/Index';
+	import LoginPage from "../pages/Login/Index";
+	import UsersPage from "../pages/Users/Index";
 
-import PrivateRoute from "./PrivateRoute";
+	import AuthGuard from "./AuthGuard";
 
-const RoutesApp = () => {
-	return(
-			<Routes>
-				<Route path='/' element={ <HomePage /> } />
-				<Route path='/todos' element={ <PrivateRoute> <TodosPage /> </PrivateRoute> } />
-				<Route path='/users' element={ <PrivateRoute> <UsersPage /> </PrivateRoute> } />
+	const RoutesApp = () => {
+		return(
+				<Routes>
+					<Route path='/' element={ <HomePage /> } />
+					<Route path='/todos' element={ <AuthGuard> <TodosPage /> </AuthGuard> } />
+					<Route path='/users' element={ <AuthGuard> <UsersPage /> </AuthGuard> } />
 
-				<Route path='/login' element={ <LoginPage /> } />
-				<Route path='*' element={ <HomePage /> } />
-			</Routes>
-	);
-};
+					<Route path='/login' element={ <LoginPage /> } />
+					<Route path='*' element={ <HomePage /> } />
+				</Routes>
+		);
+	};
 
-export default RoutesApp;
+	export default RoutesApp;
