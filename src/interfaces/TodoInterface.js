@@ -1,6 +1,8 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
+import { toast } from 'react-toastify';
+
 export function useTodoInterface(initialTodos) {
 	const [text, setText] = useState('');
 	const [showCompleted, setShowCompleted] = useState(true);
@@ -10,11 +12,13 @@ export function useTodoInterface(initialTodos) {
 		e.preventDefault();
 		const newTodo = { id: todoList.length + 1, text, completed: false };
 		setTodoList((todoList) => [...todoList, newTodo]);
+		toast.success('Task successfully added.');
 		setText('');
 	}
 
 	const deleteTodo = (id) => {
 		setTodoList((todoList) => todoList.filter((todo) => todo.id !== id));
+		toast.success('Task successfully removed.');
 	}
 
 	const toggleTodo = (id) => {
@@ -23,6 +27,7 @@ export function useTodoInterface(initialTodos) {
 						todo.id === id ? {...todo, completed: !todo.completed} : todo
 				)
 		);
+		toast.success('Task successfully updated.');
 	};
 
 	const filteredTodoList = showCompleted
