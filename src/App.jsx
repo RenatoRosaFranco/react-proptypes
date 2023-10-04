@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Header from "./components/Layouts/Header/Index";
 import Footer from "./components/Layouts/Footer/Index";
 
@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <TodoList todos={todos} />
+        <TodoList todos={todos} />
       <Footer />
     </div>
   );

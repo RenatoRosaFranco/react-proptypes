@@ -4,12 +4,11 @@ import PropTypes from "prop-types";
 import './style.sass';
 
 const TodoInput = (props) => {
-	const { onSubmit, onChange, name } = props
+	const { onSubmit, onChange, name } = props;
 
   return(
 			<form onSubmit={onSubmit}>
-        <input type="text" name={name} value={name} onChange={onChange}
-        placeholder='Task name...'/>
+        <input type="text" name={name} value={name} onChange={onChange} placeholder='Task name...'/>
         <button> Add Todo</button>
       </form>
 	)

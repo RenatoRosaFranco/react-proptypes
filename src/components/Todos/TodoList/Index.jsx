@@ -7,7 +7,6 @@ import TodoInput from "../TodoInput/Index";
 import './style.sass';
 
 import { useTodoInterface } from '../../../interfaces/TodoInterface';
-import storage_service from '../../../services/storage_service';
 
 const TodoList = ({ todos }) => {
   const {

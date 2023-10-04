@@ -1,11 +1,11 @@
 class StorageService {
 	constructor() {
-		this.stoge = localStorage;
+		this.storage = localStorage;
 	}
 
 	getItem(item) {
 		try {
-			return this.localStorage.getItem(item) || null;
+			return this.storage.getItem(item) || null;
 		} catch (error) {
 			console.log('Error getting item from LocalStorage:', error);
 			return null;
@@ -14,12 +14,12 @@ class StorageService {
 
 	setItem(item, value) {
 		try {
-			this.localStorage.setItem(item, value);
+			this.storage.setItem(item, value);
 		} catch (error) {
 			console.log('Error setting item in LocalStorage:', error);
 		}
 	}
 }
 
-let storage_service = new StorageService;
-export { storage_service };
+let storageService = new StorageService();
+export { storageService };
