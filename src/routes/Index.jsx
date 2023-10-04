@@ -14,8 +14,8 @@
 					<Route path='/' element={ <HomePage /> } />
 					<Route path='/todos' element={ <AuthGuard> <TodosPage /> </AuthGuard> } />
 					<Route path='/users' element={ <AuthGuard> <UsersPage /> </AuthGuard> } />
-
 					<Route path='/login' element={ <LoginPage /> } />
+
 					<Route path='*' element={ <HomePage /> } />
 				</Routes>
 		);
