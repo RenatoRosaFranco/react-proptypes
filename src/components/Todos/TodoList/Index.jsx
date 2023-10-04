@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import TodoItem from "../TodoItem/Index";
@@ -6,45 +6,18 @@ import TodoInput from "../TodoInput/Index";
 
 import './style.sass';
 
+import { useTodoInterface } from '../../../interfaces/TodoInterface';
+
 const TodoList = ({ todos }) => {
-  const [todoList, setTodoList] = useState(todos);
-  const [text, setText] = useState('');
-  const nextId = useRef(todos.length + 1);
-  const [showCompleted, setShowCompleted] = useState(true);
-
-  const addTodo = (e) => {
-    e.preventDefault();
-
-    const newTodo = {
-      id: nextId.current++,
-      text: text,
-      completed: false
-    }
-
-    setTodoList((todoList) => {
-      return [...todoList, newTodo];
-    });
-
-    setText('');
-  };
-
-  const deleteTodo = (id) => {
-    console.log(id);
-    setTodoList(todoList.filter((todo) => todo.id !== id));
-  };
-
-  const toggleTodo = (id) => {
-    console.log(id);
-    setTodoList(
-      todoList.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    )
-  };
-
-  const filteredTodoList = showCompleted ?
-      todoList.filter((todo) => todo.completed)
-      : todoList.filter((todo) => !todo.completed);
+  const {
+      text,
+      setText,
+      addTodo,
+      deleteTodo,
+      toggleTodo,
+      setShowCompleted,
+      filteredTodoList
+  } = useTodoInterface(todos);
 
   return(
     <div>
