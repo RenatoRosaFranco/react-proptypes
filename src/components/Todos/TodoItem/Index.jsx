@@ -1,16 +1,24 @@
 import React from 'react';
 import PropTypes from "prop-types";
 
-const TodoItem = ({todo, onDelete, onToggle}) => {
+import './style.sass';
+
+const TodoItem = (props) => {
+	const {todo, onDelete, onToggle} = props
+
 	return(
-			<div>
+			<div className="todo-item">
 				<input
 					type="checkbox"
+					id={`todo-${todo.id}`}
 					checked={todo.completed}
 					onChange={() => onToggle(todo.id)}
+					aria-labelledby={`label-todo-${todo.id}`}
 				/>
 
-				<span>{todo.text}</span>
+				<label htmlFor={`todo-${todo.id}`} id={`label-todo-${todo.id}`}>
+					{todo.text}
+				</label>
 				<button onClick={ () => onDelete(todo.id)}>Delete</button>
 			</div>
 	)

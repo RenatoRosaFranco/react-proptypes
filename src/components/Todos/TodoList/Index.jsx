@@ -1,27 +1,39 @@
 import React, {useRef, useState} from 'react';
 import PropTypes from 'prop-types';
-import TodoItem from "../TodoItem/TodoItem";
+
+import TodoItem from "../TodoItem/Index";
+import TodoInput from "../TodoInput/Index";
+
+import './style.sass';
 
 const TodoList = ({ todos }) => {
   const [todoList, setTodoList] = useState(todos);
-  const [title, setTitle] = useState('');
+  const [text, setText] = useState('');
   const nextId = useRef(todos.length + 1);
 
-  const addTodo = (text) => {
+  const addTodo = (e) => {
+    e.preventDefault();
+
     const newTodo = {
       id: nextId.current++,
-      text,
+      text: text,
       completed: false
     }
 
-    setTodoList([...todoList, newTodo])
+    setTodoList((todoList) => {
+      return [...todoList, newTodo];
+    });
+
+    setText('');
   };
 
   const deleteTodo = (id) => {
-    setTodoList(todos.filter((todo) => todo.id !== id));
+    console.log(id);
+    setTodoList(todoList.filter((todo) => todo.id !== id));
   };
 
   const toggleTodo = (id) => {
+    console.log(id);
     setTodoList(
       todoList.map((todo) =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
@@ -33,20 +45,21 @@ const TodoList = ({ todos }) => {
     <div>
       <h2>Todo List</h2>
 
-      <form onSubmit={ addTodo }>
-        <input type='string' />
-        <button> Add Todo</button>
-      </form>
-      <hr />
+      <TodoInput
+          onSubmit={addTodo}
+          name={text}
+          onChange={(event) => setText(event.target.value)}
+      />
+      <hr/>
 
       {todoList.map((todo) => {
-        return(
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            onDelete={deleteTodo}
-            onToggle={toggleTodo}
-          />
+        return (
+            <TodoItem
+                key={todo.id}
+                todo={todo}
+                onDelete={deleteTodo}
+                onToggle={toggleTodo}
+            />
         )
       })}
     </div>
