@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 export function useTodoInterface(initialTodos) {
 	const [text, setText] = useState('');
@@ -40,3 +41,15 @@ export function useTodoInterface(initialTodos) {
 		toggleTodo
 	};
 }
+
+useTodoInterface.propTypes = {
+  text: PropTypes.string,
+  setText: PropTypes.func.isRequired,
+  showCompleted: PropTypes.bool.isRequired,
+  setShowCompleted: PropTypes.func.isRequired,
+  filteredTodoList: PropTypes.array.isRequired,
+  todoList: PropTypes.array.isRequired,
+  addTodo: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
+  toggleTodo: PropTypes.func.isRequired,
+};
