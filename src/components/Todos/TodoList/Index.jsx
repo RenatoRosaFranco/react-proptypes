@@ -9,15 +9,7 @@ import './style.sass';
 import { useTodoInterface } from '../../../interfaces/TodoInterface';
 
 const TodoList = ({ todos }) => {
-  const {
-      text,
-      setText,
-      addTodo,
-      deleteTodo,
-      toggleTodo,
-      setShowCompleted,
-      filteredTodoList
-  } = useTodoInterface(todos);
+  const { text, setText, addTodo, deleteTodo, toggleTodo, setShowCompleted, filteredTodoList } = useTodoInterface(todos);
 
   return(
     <div>
@@ -37,16 +29,18 @@ const TodoList = ({ todos }) => {
       </div>
 
       <br />
-      {filteredTodoList.map((todo) => {
-        return (
-            <TodoItem
-                key={todo.id}
-                todo={todo}
-                onDelete={deleteTodo}
-                onToggle={toggleTodo}
-            />
-        )
-      })}
+      {filteredTodoList.length > 0 ? (
+        filteredTodoList.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onDelete={deleteTodo}
+            onToggle={toggleTodo}
+          />
+        ))
+      ) : (
+        <p>No tasks are found.</p>
+      )}
     </div>
   )
 }

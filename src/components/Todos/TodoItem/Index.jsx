@@ -18,7 +18,7 @@ const TodoItem = (props) => {
 
 				<label htmlFor={`todo-${todo.id}`} id={`label-todo-${todo.id}`}>
 					{todo.text}
-				</label>
+				</label> -
 				<button onClick={ () => onDelete(todo.id)}>Delete</button>
 			</div>
 	)
