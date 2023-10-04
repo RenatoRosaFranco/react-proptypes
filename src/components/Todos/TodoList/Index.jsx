@@ -1,9 +1,10 @@
 import React, {useRef, useState} from 'react';
 import PropTypes from 'prop-types';
-import TodoItem from "./TodoItem";
+import TodoItem from "../TodoItem/TodoItem";
 
 const TodoList = ({ todos }) => {
   const [todoList, setTodoList] = useState(todos);
+  const [title, setTitle] = useState('');
   const nextId = useRef(todos.length + 1);
 
   const addTodo = (text) => {
@@ -31,16 +32,22 @@ const TodoList = ({ todos }) => {
   return(
     <div>
       <h2>Todo List</h2>
-      <button onClick={() => addTodo('New Task')}></button>
-      <br/>
+
+      <form onSubmit={ addTodo }>
+        <input type='string' />
+        <button> Add Todo</button>
+      </form>
+      <hr />
 
       {todoList.map((todo) => {
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          onDelete={deleteTodo}
-          onToggle={toggleTodo}
-        />
+        return(
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onDelete={deleteTodo}
+            onToggle={toggleTodo}
+          />
+        )
       })}
     </div>
   )
